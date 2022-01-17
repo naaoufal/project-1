@@ -16,7 +16,7 @@ const getAllPlaces = async (req, res) => {
 const addPlace = async (req, res) => {
     const place = new Place({
         name : req.body.name,
-        images : req.body.file,
+        images : req.file.filename,
         description : req.body.description
     })
 
