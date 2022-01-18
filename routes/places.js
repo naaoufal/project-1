@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const placeController = require("../controllers/places")
+const path = require("path")
 const multer = require("multer")
 
 var storage = multer.diskStorage({
@@ -8,7 +9,7 @@ var storage = multer.diskStorage({
       cb(null, "uploads")
     },
     filename: function (req, file, cb) {
-      cb(null, new Date().toISOString().replace(/:/g, '-')+'-'+file.originalname)
+      cb(null, Date.now()+'-'+file.originalname)
     }
 })
 

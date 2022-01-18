@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(cors())
 
 // use static route to create new repository to save photos :
-// app.use('/api/places', express.static(__dirname +'/uploads'));
+app.use(express.static(__dirname));
 
 // declaring url to be used in our endpoints :
 app.use("/api/places", require("./routes/places"))
