@@ -1,7 +1,6 @@
 const express = require("express")
 const router = express.Router()
 const placeController = require("../controllers/places")
-const path = require("path")
 const multer = require("multer")
 
 var storage = multer.diskStorage({
