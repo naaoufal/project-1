@@ -1,9 +1,9 @@
-const express = require("express");
-const cors = require('cors');
-require("dotenv").config();
-const connectDB = require("./config/mongodb");
-const app = express();
-const http = require('http');
+const express = require("express")
+const cors = require('cors')
+require("dotenv").config()
+const connectDB = require("./config/mongodb")
+const app = express()
+const http = require('http')
 const server = http.createServer(app)
 
 // connect to database with mongodb:
@@ -20,4 +20,4 @@ app.use("/api/places", require("./routes/places"))
 app.use("/api/admins", require("./routes/admins"))
 
 // start the server
-server.listen(3001, () => {console.log("the server is started")});
+server.listen(3001, () => {console.log("the server is started")})
