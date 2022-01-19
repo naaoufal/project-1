@@ -17,19 +17,18 @@ const getAllAdmins = async (req, res) => {
 const addAdmin = async (req, res) => {
     // handle request :
     const salt = await bcrypt.genSalt(10)
-    const admin = new Admin({
-        email : req.body.email,
-        password : bcrypt.hash(req.body.password, salt, function (err, hash) {
-            return err
+    bcrypt.hash(req.body.password, salt, async function (err, hash) {
+        const admin = new Admin({
+            email : req.body.email,
+            password : hash
         })
+        try {
+            const newAdmin = await admin.save()
+            res.json(newAdmin)
+        } catch (error) {
+            res.json({ message : error.message })
+        }
     })
-    // admin.password = await bcrypt.hash(admin.password, salt)
-    try {
-        const newAdmin = await admin.save()
-        res.json(newAdmin)
-    } catch (error) {
-        res.json({ message : error.message })
-    }
 }
 
 module.exports = {
