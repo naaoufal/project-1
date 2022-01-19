@@ -31,7 +31,27 @@ const addAdmin = async (req, res) => {
     })
 }
 
+// login using email and password :
+const login = async (req, res) => {
+    // handle request :
+    try {
+        const admin = await Admin.findOne({ email : req.body.email })
+        // res.json(admin)
+        if(admin) {
+            const encrypted = await bcrypt.compare(req.body.password, admin.password)
+            if(encrypted) {
+                res.json(admin)
+            } else {
+                res.json("password or email are wrong !!!")
+            }
+        }
+    } catch (error) {
+        res.json({ message : error.message })
+    }
+}
+
 module.exports = {
     getAllAdmins,
-    addAdmin
+    addAdmin,
+    login
 }

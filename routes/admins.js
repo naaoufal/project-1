@@ -8,4 +8,6 @@ router.get("/getAdmins", adminController.getAllAdmins)
 
 router.post("/addAdmin", adminController.addAdmin)
 
+router.post("/login", adminController.login)
+
 module.exports = router
