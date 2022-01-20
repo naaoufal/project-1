@@ -1,5 +1,6 @@
 const Admin = require('../models/admins')
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 // get all admins :
@@ -32,7 +33,7 @@ const addAdmin = async (req, res) => {
 }
 
 // login using email and password :
-const login = async (req, res) => {
+const login = async (req, res, next) => {
     // handle request :
     try {
         const admin = await Admin.findOne({ email : req.body.email })
@@ -40,13 +41,18 @@ const login = async (req, res) => {
         if(admin) {
             const encrypted = await bcrypt.compare(req.body.password, admin.password)
             if(encrypted) {
-                res.json(admin)
+                // res.json(admin)
+                const accessToken = jwt.sign({ admin }, process.env.ADMIN_ACCESS_TOKEN)
+                res.json({ accessToken : accessToken })
+                res.admin = admin
+                next()
             } else {
                 res.json("password or email are wrong !!!")
             }
         }
     } catch (error) {
-        res.json({ message : error.message })
+        console.log(error)
+        res.status(500).send("Internal Server error Occured");
     }
 }
 
