@@ -12,6 +12,22 @@ const getAllPlaces = async (req, res) => {
     }
 }
 
+// get one place by ID :
+const getPlace = async (req, res) => {
+    try {
+        const id = req.params.id
+        const place = await Place.findById(id)
+        // res.json(place)
+        if(place) {
+            res.json(place)
+        } else {
+            res.json({ message : "No Data Found !!!" })
+        }
+    } catch (error) {
+        res.json({ message : error.message })
+    }
+}
+
 // post a new place :
 const addPlace = async (req, res) => {
     const place = new Place({
@@ -31,5 +47,6 @@ const addPlace = async (req, res) => {
 
 module.exports = {
     getAllPlaces,
+    getPlace,
     addPlace
 }

@@ -18,6 +18,8 @@ const upload = multer({ storage : storage })
 
 router.get("/getPlaces", placeController.getAllPlaces)
 
+router.get("/getPlaceById/:id", placeController.getPlace)
+
 router.post("/addPlace", upload.single('images'), placeController.addPlace)
 
 module.exports = router
