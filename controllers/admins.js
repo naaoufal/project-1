@@ -43,7 +43,10 @@ const login = async (req, res, next) => {
             if(encrypted) {
                 // res.json(admin)
                 const accessToken = jwt.sign({ admin }, process.env.ADMIN_ACCESS_TOKEN)
-                res.json({ accessToken : accessToken })
+                res.json({ 
+                    accessToken : accessToken,
+                    payload : admin
+                })
                 res.admin = admin
                 next()
             } else {
