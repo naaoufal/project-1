@@ -44,6 +44,21 @@ const addPlace = async (req, res) => {
     }
 }
 
+// edit on a place :
+const editPlace = async (req, res) => {
+    if(!req.body) {
+        return res.send({ message : "They is no DATA !!!" })
+    }
+    const id = req.params.id
+    Place.findByIdAndUpdate(id, req.body, { userFindAndModify : false }).then(data => {
+        if(!data) {
+            res.send({ message : "they is no Place !!" })
+        } else {
+            res.send({ message : "Place Updated !!!" })
+        }
+    })
+}
+
 // delete place by ID :
 const deletePlace = async (req, res) => {
     // handle request :
@@ -60,5 +75,6 @@ module.exports = {
     getAllPlaces,
     getPlace,
     addPlace,
+    editPlace,
     deletePlace
 }

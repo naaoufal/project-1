@@ -23,6 +23,8 @@ router.get("/getPlaceById/:id", placeController.getPlace)
 
 router.post("/addPlace", access, upload.single('images'), placeController.addPlace)
 
+router.patch("/editPlace/:id", access, placeController.editPlace)
+
 router.delete("/deletePlace", access, placeController.deletePlace)
 
 module.exports = router
