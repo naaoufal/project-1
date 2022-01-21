@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 const placeController = require("../controllers/places")
 const multer = require("multer")
+const access = require("../middlewares/auth")
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -20,6 +21,8 @@ router.get("/getPlaces", placeController.getAllPlaces)
 
 router.get("/getPlaceById/:id", placeController.getPlace)
 
-router.post("/addPlace", upload.single('images'), placeController.addPlace)
+router.post("/addPlace", access, upload.single('images'), placeController.addPlace)
+
+router.delete("/deletePlace", access, placeController.deletePlace)
 
 module.exports = router

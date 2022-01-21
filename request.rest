@@ -18,6 +18,15 @@ Content-Type: application/json
 
 ####
 
+POST http://localhost:3001/api/admins/decode
+Content-Type: application/json
+
+{
+    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6eyJfaWQiOiI2MWU4NjJiYmU3MGYyY2Q4YmU2ZWUyMDciLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJDBpUVRpVHcvZWR5N3JYeE5ReW1NeHVJTzQycnJoVWV4M1kwQlpWOEs3eHdocGVvRVFNYlZlIiwiX192IjowfSwiaWF0IjoxNjQyNzc4MDAwfQ.1LI8NJTBTrWZNdWzlx80UhAWSkQ6aHkjxO0J2292y4I"
+}
+
+####
+
 GET http://localhost:3001/api/places/getPlaces
 
 ####

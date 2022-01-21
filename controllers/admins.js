@@ -59,8 +59,25 @@ const login = async (req, res, next) => {
     }
 }
 
+// decode token :
+const decodedToken = async (req, res) => {
+    try {
+        const decodedToken = req.body.token
+        let result = jwt.decode(decodedToken)
+        // res.json(result)
+        if(result) {
+            res.json(result)
+        } else {
+            res.json("No Data Found !!!")
+        }
+    } catch (error) {
+        res.json({ message : error.message })
+    }
+}
+
 module.exports = {
     getAllAdmins,
     addAdmin,
-    login
+    login,
+    decodedToken
 }

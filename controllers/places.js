@@ -35,7 +35,6 @@ const addPlace = async (req, res) => {
         images : req.file.filename,
         description : req.body.description
     })
-
     // handle request :
     try {
         const newPlace = await place.save()
@@ -45,8 +44,21 @@ const addPlace = async (req, res) => {
     }
 }
 
+// delete place by ID :
+const deletePlace = async (req, res) => {
+    // handle request :
+    try {
+        Place.findByIdAndDelete(req.params.id).then(() => {
+            res.json("Place deleted Successfuly !!!")
+        })
+    } catch (error) {
+        res.json({ message : error.message })
+    }
+}
+
 module.exports = {
     getAllPlaces,
     getPlace,
-    addPlace
+    addPlace,
+    deletePlace
 }
