@@ -50,7 +50,7 @@ const login = async (req, res, next) => {
                 res.admin = admin
                 next()
             } else {
-                res.json("password or email are wrong !!!")
+                res.json({ message : "password or email are wrong !!!" })
             }
         }
     } catch (error) {
